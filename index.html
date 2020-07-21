@@ -51,7 +51,7 @@
 				// User will need to sign-in to access the viewer even if your application is public
 				oAuthAppId: "",
 				// Select the application layout between "three-panel", "integrated", or "side-panel"
-				layout: "side-panel",
+				layout: "integrated", // default value is "side-panel"
 				// The application header title, if no title is specified, the webmap's title is used
 				title: "",
 				// The application header subtitle, if not specified the ArcGIS.com web map's summary is used
@@ -121,6 +121,8 @@
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
 				loadCSS("resources/icons/font-awesome-4.7.0/css/font-awesome.min.css");
+				// load custom stylesheet
+				loadCSS("app/custom-style.css");
 			}
 			else {
 				loadCSS("lib/bootstrap/css/bootstrap.min.css");
@@ -318,6 +320,16 @@
 			<div id="leftPanel"></div>
 			<!-- Map panel -->
 			<div id="mapPanel">
+
+				<!-- Custom Map Legend -->
+				<div id="legendContainer">
+					<!-- users click on button to open/close legend -->
+					<button id="toggleLegend">Legend   <i id="legendBtnState" class='fa fa-arrow-down'></i></button>
+					<!-- container for indiviual legend elements -->
+					<div id="legendDiv"></div>
+				</div>
+				<!-- ./ Custom Map Legend -->
+
 				<div id="mainMap">
 					<div id="hoverInfo"></div>
 				</div>
@@ -1247,6 +1259,8 @@
 				else
 					loadJS('app/maptour-viewer-min.js');
 				loadJS('app/main-app.js');
+				// load custom javascript file
+				loadJS('app/custom-script.js');
 			}
 			else {
 				loadJS('lib/_jquery.1.9.1.min.js');
